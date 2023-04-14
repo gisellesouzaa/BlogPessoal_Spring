@@ -3,14 +3,20 @@ package com.generation.blogpessoal.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
+
+import jakarta.validation.Valid;
 
 @RestController //Define a classe como tipo controladora 
 @RequestMapping("/postagens") //Responde as requisições de /postagens
@@ -27,6 +33,36 @@ public class PostagemController {
 			return ResponseEntity.ok(postagemRepository.findAll());
 			//oK retorna o código 200
 			//Equivalente a: SELECT * FROM tb_postagens
-			
 		}
+		
+		//Procurar por ID
+		@GetMapping("/{id}")
+		public ResponseEntity<Postagem> getById(@PathVariable Long id){
+			
+			return postagemRepository.findById(id)
+					.map(resposta -> ResponseEntity.ok(resposta))
+					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+			
+			//Equivalente a: SELECT * FROM tb_postagens WHERE id = ?;
+		}
+		
+		//Consultar Postagens por Título
+		@GetMapping("/titulo/{titulo}")
+		public ResponseEntity<List<Postagem>> getByTitulo(@PathVariable String titulo){
+			
+			return ResponseEntity.ok(postagemRepository.findAllByTituloContainingIgnoreCase(titulo));
+				
+			//Equivalente a: SELECT * FROM tb_postagens where titulo like "%titulo%";
+		}
+		
+		//Método Cadastrar Postagem
+		@PostMapping
+		public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
+			
+			return ResponseEntity.status(HttpStatus.CREATED)
+					.body(postagemRepository.save(postagem));
+				
+			//Equivalente a: INSERT INTO tb_postagens (titulo, texto, data) VALUES ("Título", "Texto", CURRENT_TIMESTAMP());
+		}
+		
 }

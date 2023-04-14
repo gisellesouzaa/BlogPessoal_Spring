@@ -47,17 +47,22 @@ Cada Recurso irá gerar uma tabela no Banco de dados da aplicação. A Classe au
 - [x]  Criar projeto Spring Boot com as dependências
 - [x]  Configurar o banco de dados em ‘application.properties’
 - [x]  Criar pacotes: Model, Repository e Controller
-- [x]  Em Model:
+- [x]  No pacote Model:
     - [x]  Criar classe ‘Postagem’
     - [x]  Criar atributos
     - [x]  Gerar Getters and Setters
     - [x]  Configurar as propriedades do banco de dados através das Annotations
-- [x]  Em Repository:
+- [x]  No pacote Repository:
     - [x]  Criar a interface ‘PostagemRepository’ com base no JPA
-- [x]  Em Controller:
+    - [x]  Criar método personalizado para ‘buscar por título’
+- [x]  No pacote Controller:
     - [x]  Criar a classe ‘PostagemController’
     - [x]  Fazer a injeção de dependências com o @Autowired
-    - [x]  Criar objeto da lista de postagem  com o @GetMapping
+    - [x]  Implementar os Métodos CRUD:
+        - [x]  getAll | getById | getByTitulo | post | put | delete
+- [x]  Consumir a API usando o Insomnia
+
+<b>...</b>
 
 <h2> Autor: </h2>
 

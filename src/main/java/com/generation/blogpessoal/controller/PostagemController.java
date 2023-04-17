@@ -20,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.generation.blogpessoal.model.Postagem;
 import com.generation.blogpessoal.repository.PostagemRepository;
+import com.generation.blogpessoal.repository.TemaRepository;
 
 import jakarta.validation.Valid;
 
@@ -33,6 +34,9 @@ public class PostagemController {
 		
 		@Autowired
 		private PostagemRepository postagemRepository;
+		
+		@Autowired
+		private TemaRepository temaRepository;
 		
 	
 		//----------- Método buscar todos-----------//
@@ -68,10 +72,10 @@ public class PostagemController {
 		//----------- Método Cadastrar Nova Postagem-----------//
 		@PostMapping
 		public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
-			
+	
 			return ResponseEntity.status(HttpStatus.CREATED)
 					.body(postagemRepository.save(postagem));
-					
+			
 		}//Equivalente a: INSERT INTO tb_postagens (titulo, texto, data) VALUES ("Título", "Texto", CURRENT_TIMESTAMP());
 		
 		

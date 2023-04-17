@@ -68,7 +68,7 @@ public class TemaController {
 				.body(temaRepository.save(tema));	
 	}
 	
-	//-----------Método Atualizar a Tema -----------//
+	//-----------Método atualizar a Tema -----------//
 	
 	@PutMapping
 	public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema) {
@@ -79,6 +79,7 @@ public class TemaController {
 	} 
 	
 	//-----------Método deletar o tema -----------//
+	
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {

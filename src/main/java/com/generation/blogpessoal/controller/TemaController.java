@@ -53,10 +53,10 @@ public class TemaController {
 	
 	//-----------Consultar tema por descricao-----------//
 	@GetMapping("/descricao/{descricao}")
+		
 	public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao){
 		
 		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
-			
 	} 
 	
 	//----------- Método Cadastrar Novo Tema-----------//
@@ -72,10 +72,13 @@ public class TemaController {
 	
 	@PutMapping
 	public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema) {
-		return temaRepository.findById(tema.getId())
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-						.body(temaRepository.save(tema)))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(temaRepository.save(tema));	
+		
+//		return temaRepository.findById(tema.getId())
+//				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
+//						.body(temaRepository.save(tema)))
+//				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	} 
 	
 	//-----------Método deletar o tema -----------//

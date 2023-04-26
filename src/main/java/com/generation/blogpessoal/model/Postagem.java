@@ -21,15 +21,15 @@ public class Postagem {
 
 	//CRIAR ATRIBUTOS E CONFIGURAR AS PROPRIEDADES DO BD
 	
-	@Id //indica que é a chave primaria da tabela
+	@Id //indica que é a chave primária da tabela
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Tornar o Id autoincremente
 	private Long id;
 	
-	@NotBlank (message= "O Atributo 'título' é obrigatório!") //Não permitir nulo e espaço vazio
+	@NotBlank (message= "O atributo 'título' é obrigatório!") //Não permitir nulo e espaço vazio
 	@Size(min = 5, max = 100, message = "O atributo título deve ter no mínimo 05 e no máximo 100 caracteres")
 	private String titulo;
 	
-	@NotBlank (message= "O Atributo 'texto' é obrigatório!") //Não permitir nulo e espaço vazio
+	@NotBlank (message= "O atributo 'texto' é obrigatório!") //Não permitir nulo e espaço vazio
 	@Size(min = 10, max = 1000, message = "O atributo título deve ter no mínimo 10 e no máximo 1000 caracteres")
 	private String texto;
 	
@@ -41,6 +41,10 @@ public class Postagem {
 	@ManyToOne
 	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
 	private Tema tema;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
+	private Usuario usuario;
 	
 	// GETTER E SETTERS
 	public Long getId() {
@@ -85,8 +89,20 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
+
+	// Criar os metodos Getters e Setters do objeto Usuario
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	
 	
+	
+
 
 	
 }

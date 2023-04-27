@@ -72,10 +72,11 @@ public class PostagemController {
 		//----------- Método Cadastrar Nova Postagem-----------//
 		@PostMapping
 		public ResponseEntity<Postagem> post(@Valid @RequestBody Postagem postagem){
-	
-			return ResponseEntity.status(HttpStatus.CREATED)
-					.body(postagemRepository.save(postagem));
-			
+			if (temaRepository.existsById(postagem.getTema().getId()))
+				return ResponseEntity.status(HttpStatus.CREATED)
+						.body(postagemRepository.save(postagem));
+				
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema não existe!", null);
 		}//Equivalente a: INSERT INTO tb_postagens (titulo, texto, data) VALUES ("Título", "Texto", CURRENT_TIMESTAMP());
 		
 		
@@ -83,10 +84,17 @@ public class PostagemController {
 		//-----------Método Atualizar a Postagem-----------//
 		@PutMapping
 		public ResponseEntity<Postagem> put(@Valid @RequestBody Postagem postagem) {
-			return postagemRepository.findById(postagem.getId())
-					.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-							.body(postagemRepository.save(postagem)))
-					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+			if (postagemRepository.existsById(postagem.getId())){
+				
+				if (temaRepository.existsById(postagem.getTema().getId()))
+					return ResponseEntity.status(HttpStatus.OK)
+							.body(postagemRepository.save(postagem));
+				
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tema não existe!", null);
+				
+			}			
+				
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 			
 		} //Equivalente a: UPDATE tb_postagens SET titulo = "titulo", texto = "texto", data = CURRENT_TIMESTAMP() WHERE id = id;
 

@@ -42,6 +42,8 @@ public class Postagem {
 	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
 	private Tema tema;
 	
+	// RELACIONAMENTO COM A CLASSE USUARIO
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
 	private Usuario usuario;

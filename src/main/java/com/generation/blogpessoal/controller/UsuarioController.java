@@ -33,7 +33,7 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 
-	@GetMapping
+	@GetMapping("/all")
 	public ResponseEntity<List<Usuario>> getAll(){
 		return ResponseEntity.ok(usuarioRepository.findAll());
 	} 
@@ -41,7 +41,8 @@ public class UsuarioController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Usuario> getById(@PathVariable Long id) {
 
-		return usuarioRepository.findById(id).map(resposta -> ResponseEntity.ok(resposta))
+		return usuarioRepository.findById(id)
+				.map(resposta -> ResponseEntity.ok(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
 	}
 
@@ -52,25 +53,20 @@ public class UsuarioController {
 				.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
 	}
 	
-
-//	@PostMapping EXEMPLO
-//	public ResponseEntity<Produto> postProduto(@Valid @RequestBody Produto produto){
-//		return categoriaRepository.findById(produto.getCategoria().getId())
-//				.map(resposta -> ResponseEntity.status(HttpStatus.CREATED).body(produtoRepository.save(produto)))
-//				.orElse(ResponseEntity.badRequest().build());
-//	}
-
-	@PutMapping("/atualizar")
-	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
-		return usuarioService.atualizarUsuario(usuario)
-				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
-				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	}
-
 	@PostMapping("/logar")
 	public ResponseEntity<UsuarioLogin> loginUsuario(@Valid @RequestBody Optional<UsuarioLogin> usuarioLogin) {
 		return usuarioService.autenticarUsuario(usuarioLogin)
 				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
 				.orElse(ResponseEntity.status(HttpStatus.UNAUTHORIZED).build());
 	}
+	
+
+	@PutMapping("/atualizar")
+	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario) {
+		
+		return usuarioService.atualizarUsuario(usuario)
+				.map(resposta -> ResponseEntity.status(HttpStatus.OK).body(resposta))
+				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
+	}
+
 }

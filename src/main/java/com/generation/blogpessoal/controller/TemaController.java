@@ -62,24 +62,28 @@ public class TemaController {
 	//----------- Método Cadastrar Novo Tema-----------//
 	
 	@PostMapping
-	public ResponseEntity<Tema> post(@Valid @RequestBody Tema tema){
+	public ResponseEntity<?> post(@PathVariable Long id, @Valid @RequestBody Tema tema){
 		
-		return ResponseEntity.status(HttpStatus.CREATED)
+		if (temaRepository.existsById(id)) {
+			return ResponseEntity.status(HttpStatus.CREATED)
 				.body(temaRepository.save(tema));	
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
+
 	
 	//-----------Método atualizar a Tema -----------//
 	
 	@PutMapping
-	public ResponseEntity<Tema> put(@Valid @RequestBody Tema tema) {
-		return ResponseEntity.status(HttpStatus.OK)
-				.body(temaRepository.save(tema));	
-		
-//		return temaRepository.findById(tema.getId())
-//				.map(resposta -> ResponseEntity.status(HttpStatus.OK)
-//						.body(temaRepository.save(tema)))
-//				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());
-	} 
+	public ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Tema tema){
+		if (temaRepository.existsById(id)) {
+			return temaRepository.findById(tema.getId())
+					.map(resposta -> ResponseEntity.status(HttpStatus.CREATED)
+					.body(temaRepository.save(tema)))
+					.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());			
+		}
+		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+    }
 	
 	//-----------Método deletar o tema -----------//
 	
@@ -94,7 +98,5 @@ public class TemaController {
 				
 		temaRepository.deleteById(id);
 	} 
-
-	
 
 }

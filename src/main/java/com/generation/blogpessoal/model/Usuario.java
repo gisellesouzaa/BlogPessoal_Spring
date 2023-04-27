@@ -43,7 +43,7 @@ public class Usuario {
 	@JsonIgnoreProperties("usuario")
 	private List<Postagem> postagem;
 
-	/* Insira os Getters and Setters */
+	/* Getters and Setters */
 
 	public Long getId() {
 		return this.id;

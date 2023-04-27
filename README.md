@@ -26,11 +26,16 @@ O Projeto é composto por 3 Recursos (*Conjunto de Classes e Interfaces respons�
 | **Usuario**      | Recurso responsável por definir o Objeto Usuário, que poderá acessar e criar postagens no Blog Pessoal |
 | **UsuarioLogin** | Classe auxiliar, que será utilizada para efetuar login no Blog Pessoal |
 
-Cada Recurso irá gerar uma tabela no Banco de dados da aplicação. A Classe auxiliar não irá gerar uma tabela no Banco de dados da aplicação porquê ela servirá de Classe auxiliar na implementação da Segurança da aplicação. Os Recursos serão implementados na mesma sequência da tabela acima. 
+Cada Recurso irá gerar uma tabela no Banco de dados da aplicação. A Classe auxiliar não irá gerar uma tabela no Banco de dados da aplicação porquê ela servirá de Classe auxiliar na implementação da Segurança da aplicação. 
 
 <h2> Diagrama de Entidade e Relacionamentos: </h2>
 
 <div align="center"><img src="https://i.imgur.com/zmzehFU.png" title="source: imgur.com" /></div>
+
+<h2> Relacionamento entre as classes: </h2>
+
+<div align="center"><img src="https://i.imgur.com/5p6IKku.png" title="source: imgur.com" /></div>
+<br />
 
 <h2> Dependências utilizadas no projeto: </h2>
 
@@ -39,30 +44,10 @@ Cada Recurso irá gerar uma tabela no Banco de dados da aplicação. A Classe au
 | **Spring Web**            | Essa dependência fornece todas as Bibliotecas necessárias para criar um projeto WEB e trabalhar com o protocolo HTTP/HTTPS. |
 | **Spring Boot Dev Tools** | Permite a atualização do projeto em tempo real durante o processo de Desenvolvimento da aplicação. |
 | **Validation**            | Fornece um conjunto de anotações que permitem validar os Atributos das Classes da Camada Model. |
-| **Spring Data JPA**       | Java Persistence API (JPA) é uma Biblioteca que armazena e recupera Objetos, que foram persistidos (armazenados) em um Bancos de Dados. |
+| **Spring Data JPA**       | Java Persistence API (JPA) é uma Biblioteca que armazena e recupera Objetos, que foram persistidos (armazenados) em um Bancos de Dados.      |
 | **MySQL Driver**          | Responsável pela conexão entre nossa aplicação e o Banco de Dados MySQL. <br />Se alterarmos o Sistema Gerenciador de Banco de dados - SGBD da aplicação (Postgre SQL, SQL server, Oracle, entre outros) precisaremos alterar o Driver da nossa aplicação. |
-
-<h2> 📝 Fases do projeto: </h2>
-
-- [x]  Criar projeto Spring Boot com as dependências
-- [x]  Configurar o banco de dados em ‘application.properties’
-- [x]  Criar pacotes: Model, Repository e Controller
-- [x]  No pacote Model:
-    - [x]  Criar classe ‘Postagem’
-    - [x]  Criar atributos
-    - [x]  Gerar Getters and Setters
-    - [x]  Configurar as propriedades do banco de dados através das Annotations
-- [x]  No pacote Repository:
-    - [x]  Criar a interface ‘PostagemRepository’ com base no JPA
-    - [x]  Criar método personalizado para ‘buscar por título’
-- [x]  No pacote Controller:
-    - [x]  Criar a classe ‘PostagemController’
-    - [x]  Fazer a injeção de dependências com o @Autowired
-    - [x]  Implementar os Métodos CRUD:
-        - [x]  getAll | getById | getByTitulo | post | put | delete
-- [x]  Consumir a API usando o Insomnia
-
-<b>...</b>
+| **Starter Security**      | Responsável por todas as dependências relacionadas à segurança do Spring. Dentro desta dependência, existem outras 3 dependências: spring-security-core, spring-security-config e spring-security-web |
+| **JWT**                   | As dependências jjwt-api, jjwt-impl e jjwt-jackson são responsáveis por gerar e validar o Token JWT.|
 
 <h2> Autor: </h2>
 

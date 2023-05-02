@@ -42,7 +42,7 @@ public class UsuarioService {
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuario){
 		
-		if(usuarioRepository.findByUsuario(usuario.getUsuario()).isPresent()) {
+		if(usuarioRepository.findById(usuario.getId()).isPresent()) {
 		
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 		

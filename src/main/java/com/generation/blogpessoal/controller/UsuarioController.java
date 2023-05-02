@@ -82,5 +82,7 @@ public class UsuarioController {
 		
 		usuarioRepository.deleteById(id);
 	}
+	
+	
 
 }

@@ -34,6 +34,9 @@ public class Postagem {
 	@UpdateTimestamp 
 	private LocalDateTime data;
 	
+	@Size(max = 5000, message = "O link da foto não pode ser maior do que 5000 caracteres")
+	private String foto;
+	
 	@ManyToOne
 	@JsonIgnoreProperties("postagem") 
 	private Tema tema;
@@ -72,6 +75,14 @@ public class Postagem {
 
 	public void setData(LocalDateTime data) {
 		this.data = data;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	public Tema getTema() {

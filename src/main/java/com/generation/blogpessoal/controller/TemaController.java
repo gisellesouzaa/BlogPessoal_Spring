@@ -29,20 +29,14 @@ import jakarta.validation.Valid;
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class TemaController {
 	
-	//----------- Injeção de dependências -----------//
-	
 	@Autowired
 	private TemaRepository temaRepository;
-	
-	//----------- Método buscar todos-----------//
-	
+		
 	@GetMapping
 	public ResponseEntity<List<Tema>> getAll(){
 		return ResponseEntity.ok(temaRepository.findAll());
 	}
-	
-	//----------- Método Procurar por ID-----------//
-	
+		
 	@GetMapping("/{id}")
 	public ResponseEntity<Tema> getById(@PathVariable Long id){
 		
@@ -51,16 +45,13 @@ public class TemaController {
 				.orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build());	
 	} 
 	
-	//-----------Consultar tema por descricao-----------//
 	@GetMapping("/descricao/{descricao}")
 		
 	public ResponseEntity<List<Tema>> getByDescricao(@PathVariable String descricao){
 		
 		return ResponseEntity.ok(temaRepository.findAllByDescricaoContainingIgnoreCase(descricao));
 	} 
-	
-	//----------- Método Cadastrar Novo Tema-----------//
-	
+		
 	@PostMapping
 	public ResponseEntity<?> post(@PathVariable Long id, @Valid @RequestBody Tema tema){
 		
@@ -70,9 +61,6 @@ public class TemaController {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
 	}
-
-	
-	//-----------Método atualizar a Tema -----------//
 	
 	@PutMapping
 	public ResponseEntity<?> put(@PathVariable Long id, @Valid @RequestBody Tema tema){
@@ -84,9 +72,7 @@ public class TemaController {
 		}
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
-	
-	//-----------Método deletar o tema -----------//
-	
+		
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {

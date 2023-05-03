@@ -26,8 +26,6 @@ import com.generation.blogpessoal.service.UsuarioService;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UsuarioControllerTest {
 
-	// Injeção de dependencia
-
 	@Autowired
 	private UsuarioService usuarioService;
 
@@ -36,15 +34,12 @@ public class UsuarioControllerTest {
 
 	@Autowired
 	private TestRestTemplate testRestTemplate;
-	// cria as requisições / insomminia
 
-	@BeforeAll // executar antes de tudo
+	@BeforeAll 
 	void start() {
 
-		// garantir que o ambiente esta controlado. Sem dados antigos.
 		usuarioRepository.deleteAll();
 
-		// criar novo usuário
 		usuarioService.cadastrarUsuario(new Usuario(0L, "Root", "root@root.com", "rootroot", "-"));
 	}
 
@@ -57,7 +52,6 @@ public class UsuarioControllerTest {
 
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate.exchange("/usuarios/cadastrar", HttpMethod.POST,
 				corpoRequisicao, Usuario.class);
-		// endereço recurso endponint, verbo, corpo, retorno
 
 		assertEquals(HttpStatus.CREATED, corpoResposta.getStatusCode());
 	}
@@ -73,7 +67,6 @@ public class UsuarioControllerTest {
 
 		ResponseEntity<Usuario> corpoResposta = testRestTemplate.exchange("/usuarios/cadastrar", HttpMethod.POST,
 				corpoRequisicao, Usuario.class);
-		// endponint, verbo Http, corpoRequisição, retorno
 
 		assertEquals(HttpStatus.BAD_REQUEST, corpoResposta.getStatusCode());
 	}
@@ -82,7 +75,6 @@ public class UsuarioControllerTest {
 	@DisplayName("😎 Deve atualizar os dados do usuário")
 	public void deveAtualizarUmUsuario() {
 
-		// Optional recebe dados cadastrados para depois recuperarmos o ID gerado pelo  sistema
 		Optional<Usuario> usuarioCadastrado = usuarioService
 				.cadastrarUsuario(new Usuario(0L, "Juliana", "juliana@gmail.com", "12345678", "-"));
 
@@ -105,7 +97,6 @@ public class UsuarioControllerTest {
 		usuarioService.cadastrarUsuario(new Usuario(0L, 
 				"Hugo", "hugo@gmail.com", "12345678", "-"));
 
-		//String pois pegará a lista em formato json
 		ResponseEntity<String> resposta = testRestTemplate
 				.withBasicAuth("root@root.com", "rootroot")
 				.exchange("/usuarios/all", HttpMethod.GET, null, String.class);
@@ -131,23 +122,16 @@ public class UsuarioControllerTest {
 	@DisplayName("😎 Deve logar usuário")
 	public void deveLogarUsuario() {
 		
-		//Criar usuario e objeto
 		usuarioService.cadastrarUsuario(new Usuario(0L, "Talita", "talita@gmail.com", "12345678", "-"));
 		
-		//Criar objeto
 		UsuarioLogin usuarioLogin = new UsuarioLogin("talita@gmail.com", "12345678");
 		
-		//corpo requisição
 		HttpEntity<Optional<UsuarioLogin>> corpoRequisicao = new HttpEntity<Optional<UsuarioLogin>>(Optional.of(usuarioLogin));
 		
-		//resposta
 		ResponseEntity<UsuarioLogin> corpoResposta = testRestTemplate
 				.exchange("/usuarios/logar", HttpMethod.POST, corpoRequisicao, UsuarioLogin.class);
 		
-		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());
-
-
-		
+		assertEquals(HttpStatus.OK, corpoResposta.getStatusCode());	
 	}
 	
 }

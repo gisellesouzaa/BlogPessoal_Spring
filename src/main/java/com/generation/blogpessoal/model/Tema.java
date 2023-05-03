@@ -18,9 +18,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @Table(name = "tb_tema")
 public class Tema {
-	
-	//CRIAR ATRIBUTOS E CONFIGURAR AS PROPRIEDADES DO BD
-	
+		
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -28,16 +26,11 @@ public class Tema {
 	@NotBlank (message= "O atributo 'descricao' é obrigatório!")
 	@Size(min = 5, max = 255, message = "O atributo 'descricao' deve ter no mínimo 5 e no máximo 255 caracteres")
 	private String descricao;
-
-	// Relacionamento com a classe postagem
 	
-	//fetch: tipo de carregamento de dados; mappedBy relacionamento com a tabela; tipo de cascata dos dados
 	@OneToMany(fetch=FetchType.LAZY, mappedBy = "tema", cascade = CascadeType.REMOVE)
-	@JsonIgnoreProperties("tema") //Para não entrar em Loop infinito
+	@JsonIgnoreProperties("tema") 
 	private List<Postagem> postagem;
-	
-	// GETTER E SETTERS
-	
+		
 	public Long getId() {
 		return id;
 	}
@@ -53,8 +46,6 @@ public class Tema {
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-
-	// GETTER E SETTERS DA COLECTION POSTAGEM
 	
 	public List<Postagem> getPostagem() {
 		return postagem;

@@ -15,40 +15,33 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-@Entity //Comando para criar a tabela no BD
-@Table(name = "tb_postagens") //Equivalente a: CREATE TABLE tb_postagens
+@Entity 
+@Table(name = "tb_postagens")
 public class Postagem {
-
-	//CRIAR ATRIBUTOS E CONFIGURAR AS PROPRIEDADES DO BD
 	
-	@Id //indica que é a chave primária da tabela
-	@GeneratedValue(strategy = GenerationType.IDENTITY) //Tornar o Id autoincremente
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
 	private Long id;
 	
-	@NotBlank (message= "O atributo 'título' é obrigatório!") //Não permitir nulo e espaço vazio
+	@NotBlank (message= "O atributo 'título' é obrigatório!") 
 	@Size(min = 5, max = 100, message = "O atributo título deve ter no mínimo 05 e no máximo 100 caracteres")
 	private String titulo;
 	
-	@NotBlank (message= "O atributo 'texto' é obrigatório!") //Não permitir nulo e espaço vazio
+	@NotBlank (message= "O atributo 'texto' é obrigatório!") 
 	@Size(min = 10, max = 1000, message = "O atributo título deve ter no mínimo 10 e no máximo 1000 caracteres")
 	private String texto;
 	
-	@UpdateTimestamp //Quando alterar a informação, atualizar automaticamente a data e hora. 
+	@UpdateTimestamp 
 	private LocalDateTime data;
-
-	// RELACIONAMENTO COM A CLASSE TEMA
 	
 	@ManyToOne
-	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
+	@JsonIgnoreProperties("postagem") 
 	private Tema tema;
-	
-	// RELACIONAMENTO COM A CLASSE USUARIO
-	
+		
 	@ManyToOne
-	@JsonIgnoreProperties("postagem") //Para não entrar em Loop infinito
+	@JsonIgnoreProperties("postagem") 
 	private Usuario usuario;
 	
-	// GETTER E SETTERS
 	public Long getId() {
 		return id;
 	}
@@ -81,8 +74,6 @@ public class Postagem {
 		this.data = data;
 	}
 
-	// Criar os metodos Getters e Setters do objeto Tema
-
 	public Tema getTema() {
 		return tema;
 	}
@@ -92,8 +83,6 @@ public class Postagem {
 		this.tema = tema;
 	}
 
-	// Criar os metodos Getters e Setters do objeto Usuario
-
 	public Usuario getUsuario() {
 		return usuario;
 	}
@@ -101,10 +90,5 @@ public class Postagem {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-	
-
-
 	
 }

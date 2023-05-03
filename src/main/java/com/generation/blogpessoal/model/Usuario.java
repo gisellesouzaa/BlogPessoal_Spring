@@ -46,7 +46,6 @@ public class Usuario {
 	private List<Postagem> postagem;
 	
 	
-	/* Métodos Construtores */
 	public Usuario(Long id, String nome, String usuario, String senha, String foto) {
 		this.id = id;
 		this.nome = nome;
@@ -56,8 +55,6 @@ public class Usuario {
 	}
 	
 	public Usuario() { }
-
-	/* Getters and Setters */
 
 	public Long getId() {
 		return this.id;

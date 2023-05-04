@@ -19,15 +19,12 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository;
-	//Cria usuario
 	
 	@Autowired
 	private JwtService jwtService;
-	//Gera o token
 	
 	@Autowired
 	private AuthenticationManager authenticationManager;
-	//Responsável pela autenticação
 	
 	public Optional<Usuario> cadastrarUsuario(Usuario usuario){
 		
@@ -37,7 +34,6 @@ public class UsuarioService {
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 		
 		return Optional.of(usuarioRepository.save(usuario));
-		//salva o usuário no banco de dados
 	}
 	
 	public Optional<Usuario> atualizarUsuario(Usuario usuario){
@@ -47,7 +43,6 @@ public class UsuarioService {
 		usuario.setSenha(criptografarSenha(usuario.getSenha()));
 		
 		return Optional.ofNullable(usuarioRepository.save(usuario));
-		//atualiza o usuário no banco de dados
 	}
 	
 	return Optional.empty();

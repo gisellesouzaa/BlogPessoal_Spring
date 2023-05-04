@@ -22,7 +22,7 @@ import com.generation.blogpessoal.model.UsuarioLogin;
 import com.generation.blogpessoal.repository.UsuarioRepository;
 import com.generation.blogpessoal.service.UsuarioService;
 
-@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) // Usa a porta http disponivel
+@SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UsuarioControllerTest {
 

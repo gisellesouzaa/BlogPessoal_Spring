@@ -20,7 +20,7 @@ public class SwaggerConfig {
         return new OpenAPI()
             .info(new Info()
                 .title("Projeto Blog Pessoal da Giselle")
-                .description("Projeto Blog Pessoal desenvolvido pela Giselle Souza durante o Bootcamp Fullstack da Generation Brasil")
+                .description("Projeto desenvolvido pela Giselle Souza durante o Bootcamp Fullstack da Generation Brasil")
                 .version("v0.0.1")
                 .license(new License()
                     .name("Generation Brasil")
@@ -31,7 +31,7 @@ public class SwaggerConfig {
                     .email("giselle_souza97@yahoo.com.br")))
             .externalDocs(new ExternalDocumentation()
                 .description("Github")
-                .url("https://github.com/conteudoGeneration/"));
+                .url("https://github.com/gisellesouzaa/BlogPessoal_Spring"));
     }
 
 

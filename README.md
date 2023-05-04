@@ -10,12 +10,67 @@ As seguintes ferramentas foram usadas na construção do projeto:
 
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=openjdk&logoColor=white)
 ![Spring Boot](https://img.shields.io/badge/Spring-6DB33F?style=flat&logo=spring&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-00000F?style=flat&logo=mysql&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-005C84?style=flat&logo=mysql&logoColor=white)
+![Insomnia](https://img.shields.io/badge/Insomnia-5C2D91?style=flat&logo=%20studio&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/Render-1CE783?style=flat&logo=&logoColor=white)
+
+
 
 <h2> Diagrama de Classes do Projeto: </h2>
 
-<div align="center"><img src="https://i.imgur.com/G71SCJ0.png" title="source: imgur.com" /></div>
-<br />
+```mermaid
+classDiagram
+class Tema {
+  - id : Long
+  - descricao : String
+  - postagem : List ~Postagem~
+  + getAll()
+  + getById(Long id)
+  + getByDescricao(String descricao)
+  + postTema(Tema tema)
+  + putTema(Tema tema)
+  + deleteTema(Long id)
+}
+class Postagem {
+  - id : Long
+  - titulo : String
+  - texto: String
+  - data: LocalDateTime
+  - senha : String
+  - tema : Tema
+  - usuario : Usuario
+  + getAll()
+  + getById(Long id)
+  + getByTitulo(String titulo)
+  + postPostagem(Postagem postagem)
+  + putPostagem(Postagem postagem)
+  + deleteTema(Long id)
+}
+class Usuario {
+  - id : Long
+  - nome : String
+  - usuario : String
+  - senha : String
+  - foto : String
+  - postagem : List ~Postagem~
+  + getAll()
+  + getById(Long id)
+  + autenticarUsuario(UsuarioLogin usuarioLogin)
+  + cadastrarUsuario(Usuario usuario)
+  + atualizarUsuario(Usuario usuario)
+}
+class UsuarioLogin{
+  - id : Long
+  - nome : String
+  - usuario : String
+  - senha : String
+  - foto : String
+  - token : String
+}
+Tema --> Postagem
+Usuario --> Postagem
+```
 
 O Projeto é composto por 3 Recursos (*Conjunto de Classes e Interfaces responsáveis por mapear um tipo de Objeto e persistir no Banco de dados Relacional*) e uma Classe auxiliar:
 
@@ -48,6 +103,9 @@ Cada Recurso irá gerar uma tabela no Banco de dados da aplicação. A Classe au
 | **MySQL Driver**          | Responsável pela conexão entre nossa aplicação e o Banco de Dados MySQL. <br />Se alterarmos o Sistema Gerenciador de Banco de dados - SGBD da aplicação (Postgre SQL, SQL server, Oracle, entre outros) precisaremos alterar o Driver da nossa aplicação. |
 | **Starter Security**      | Responsável por todas as dependências relacionadas à segurança do Spring. Dentro desta dependência, existem outras 3 dependências: spring-security-core, spring-security-config e spring-security-web |
 | **JWT**                   | As dependências jjwt-api, jjwt-impl e jjwt-jackson são responsáveis por gerar e validar o Token JWT.|
+| **PostgreSQL**            | Responsável pela conexão entre nossa aplicação e o Banco de Dados na Nuvem. O PostgreSQL é utiliza como SGBD pelo Render.|
+| **Spring Doc**            | Fornece as anotações do OpenAPI e oferece suporte ao Swagger, permitindo a disponibilização da UI e facilitando a construção da documentação da API.|
+
 
 <h2> Autor: </h2>
 

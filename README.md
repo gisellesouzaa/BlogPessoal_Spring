@@ -1,9 +1,9 @@
 <h1 align="center"> Blog Pessoal</h1>
 
 <div align="center">
-API de Blog Pessoal desenvolvido no Framework Spring durante o Bootcamp Desenvolvedor Java Fullstack da Generation Brasil<br>
-No projeto foi implementada a arquiteturas API Rest e a comunicação com os bancos de dados MySQL e PostgreSQL.<br>
-Além dos metódos de postagens, filtros, atualizaçõs e exclusões, a aplicação conta com verificações de segurança e validações de testes unitários.
+Aplicação backend de um Blog Pessoal desenvolvida no Framework Spring durante o Bootcamp Desenvolvedor Java Fullstack da Generation Brasil<br>
+No projeto foi implementada a arquitetura API Rest e a comunicação com os bancos de dados MySQL e PostgreSQL.<br>
+Além dos métodos de postagens, filtros, atualizações e exclusões, a aplicação conta com verificações de segurança e validações de testes unitários.
 </div>
  
 <h2> 🛠 Tecnologias: </h2>
@@ -15,26 +15,28 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=flat&logo=mysql&logoColor=white)
 ![Insomnia](https://img.shields.io/badge/Insomnia-5C2D91?style=flat&logo=insomnia%20studio&logoColor=white)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=flat&logo=postgresql&logoColor=white)
-![PostgreSQL](https://img.shields.io/badge/Render-1CE783?style=flat&logo=render&logoColor=white)
+![Render](https://img.shields.io/badge/Render-1CE783?style=flat&logo=render&logoColor=white)
 ![Swagger](https://img.shields.io/badge/Swagger-6DB33F?style=flat&logo=swagger&logoColor=white)
 
 ### 💬 Assuntos abordados:
 - Programação Orientada a objetos  
 - Desenvolvimento Ágil de Software com SCRUM 
-- Criação de API’s Java com Arquitetura MVC e REST 
+- Criação de API Java com Arquitetura REST 
 - Modelagem de Dados
-- Terminal + Git e GitHub
+- CLI (Command Line Interface)  
+- Git e GitHub
 - Teste de requisições HTTP (Get, Post, Put e Delete)  
-- Banco de Dados Relacionais, MySQL e PostgreSQL
-- Maven
-- Spring Data JPA
+- Bancos de Dados Relacionais: MySQL e PostgreSQL
+- Gerenciador de dependências Maven
 - Spring Boot
+- Spring Data JPA
 - Spring Security (JWT)
 - Web Services REST com Spring
-- Testes unitários em Java
-- Deploy de Aplicações
+- Testes unitários com JUnit
+- Deploy da aplicação com Render
 
 <h2> EndPoints: </h2>
+Abaixo consta os recursos da API:
   <img alt="Imagem com os EndPoints da Aplicação" src="EndPoints_da_Aplicação.png" />
 
 ---
@@ -102,7 +104,7 @@ O Projeto é composto por 3 Recursos (*Conjunto de Classes e Interfaces respons�
 | **Usuario**      | Recurso responsável por definir o Objeto Usuário, que poderá acessar e criar postagens no Blog Pessoal |
 | **UsuarioLogin** | Classe auxiliar, que será utilizada para efetuar login no Blog Pessoal |
 
-Cada Recurso gera uma tabela no Banco de dados da aplicação. A Classe auxiliar não gera uma tabela no Banco de dados da aplicação porquê ela serve de Classe auxiliar na implementação da Segurança da aplicação. 
+Cada Recurso gera uma tabela no Banco de dados da aplicação. A Classe auxiliar não gera uma tabela no Banco de dados da aplicação porque ela serve de Classe auxiliar na implementação da Segurança da aplicação. 
 
 <h2> Diagrama de Entidade e Relacionamentos: </h2>
 
@@ -117,14 +119,14 @@ Cada Recurso gera uma tabela no Banco de dados da aplicação. A Classe auxiliar
 
 | Dependência               | Descrição                                                    |
 | ------------------------- | ------------------------------------------------------------ |
-| **Spring Web**            | Essa dependência fornece todas as Bibliotecas necessárias para criar um projeto WEB e trabalhar com o protocolo HTTP/HTTPS. |
+| **Spring Web**            | Essa dependência fornece todas as bibliotecas necessárias para criar um projeto WEB e trabalhar com o protocolo HTTP/HTTPS. |
 | **Spring Boot Dev Tools** | Permite a atualização do projeto em tempo real durante o processo de Desenvolvimento da aplicação. |
 | **Validation**            | Fornece um conjunto de anotações que permitem validar os Atributos das Classes da Camada Model. |
 | **Spring Data JPA**       | Java Persistence API (JPA) é uma Biblioteca que armazena e recupera Objetos, que foram persistidos (armazenados) em um Bancos de Dados.      |
 | **MySQL Driver**          | Responsável pela conexão entre nossa aplicação e o Banco de Dados MySQL. <br />Se alterarmos o Sistema Gerenciador de Banco de dados - SGBD da aplicação (Postgre SQL, SQL server, Oracle, entre outros) precisaremos alterar o Driver da nossa aplicação. |
 | **Starter Security**      | Responsável por todas as dependências relacionadas à segurança do Spring. Dentro desta dependência, existem outras 3 dependências: spring-security-core, spring-security-config e spring-security-web |
 | **JWT**                   | As dependências jjwt-api, jjwt-impl e jjwt-jackson são responsáveis por gerar e validar o Token JWT.|
-| **PostgreSQL**            | Responsável pela conexão entre nossa aplicação e o Banco de Dados na Nuvem. O PostgreSQL é utiliza como SGBD pelo Render.|
+| **PostgreSQL**            | Responsável pela conexão entre nossa aplicação e o Banco de Dados na Nuvem. O PostgreSQL é utilizado como SGBD pelo Render.|
 | **Spring Doc**            | Fornece as anotações do OpenAPI e oferece suporte ao Swagger, permitindo a disponibilização da UI e facilitando a construção da documentação da API.|
 
 ### 💻 Demostração:
@@ -135,7 +137,7 @@ senha: rootroot <br>
 
 <a href="https://blogpessoal-0iib.onrender.com" target="_blank"><img align="center" alt="Testar Aplicação" src="https://img.shields.io/badge/Clique_aqui_para_testar_a_página-6DB33F?style=flat&logo=playerhite"></a>
 
-<p>Obs: Por se tratar de uma hospegem gratuita, o sistema pode apresentar lentidão para carregar a página.</p>
+<p> ⚠️Obs: Por se tratar de uma hospedagem gratuita, o sistema pode apresentar lentidão ao carregar a primeira página.</p>
 
 <h2> Autor: </h2>
 
